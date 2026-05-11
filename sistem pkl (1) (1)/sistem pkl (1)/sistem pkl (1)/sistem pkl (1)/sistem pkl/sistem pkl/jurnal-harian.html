@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jurnal Harian</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="2.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <span class="navbar-brand">
+                <h5 class="mb-0">Jurnal Harian</h5>
+            </span>
+
+            <a href="index.html" class="btn btn-light btn-sm">
+                Kembali
+            </a>
+        </div>
+    </nav>
+
+    <section id="jurnal" class="container p-5">
+        <h2 class="mb-4">Jurnal Harian</h2>
+
+        <form id="formJurnal">
+
+            <div class="mb-3">
+                <label class="form-label">Tanggal</label>
+                <input type="date" class="form-control" id="tanggal" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Kegiatan</label>
+                <textarea class="form-control" id="kegiatan" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-success">
+                Simpan
+            </button>
+
+        </form>
+
+        <div id="notif" class="alert alert-success mt-3 d-none" role="alert">
+            Jurnal berhasil disimpan!
+        </div>
+
+    </section>
+
+    <script>
+        const form = document.getElementById("formJurnal");
+        const notif = document.getElementById("notif");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            notif.classList.remove("d-none");
+
+            setTimeout(() => {
+                notif.classList.add("d-none");
+            }, 3000);
+
+            // reset form
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>

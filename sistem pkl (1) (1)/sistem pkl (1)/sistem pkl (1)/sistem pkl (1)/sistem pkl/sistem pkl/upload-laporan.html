@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Laporan</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="2.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container">
+            <span class="navbar-brand">
+                <h5 class="mb-0">Upload Laporan</h5>
+            </span>
+
+            <a href="index.html" class="btn btn-light btn-sm">
+                Kembali
+            </a>
+        </div>
+    </nav>
+
+    <section id="laporan" class="container p-5">
+
+        <h2 class="mb-4">Laporan PKL</h2>
+
+        <form id="formUpload">
+
+            <input 
+                type="file" 
+                class="form-control mb-3"
+                id="fileLaporan"
+                required
+            >
+
+            <button type="submit" class="btn btn-success">
+                Upload
+            </button>
+
+        </form>
+
+        <div id="notif" class="alert alert-success mt-3 d-none" role="alert">
+            File berhasil diupload!
+        </div>
+
+    </section>
+
+    <script>
+        const form = document.getElementById("formUpload");
+        const notif = document.getElementById("notif");
+
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            notif.classList.remove("d-none");
+
+            setTimeout(() => {
+                notif.classList.add("d-none");
+            }, 3000);
+
+            // reset form
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>

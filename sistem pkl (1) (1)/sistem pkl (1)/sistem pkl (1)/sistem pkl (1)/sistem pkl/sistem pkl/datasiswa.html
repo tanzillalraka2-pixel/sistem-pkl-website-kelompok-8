@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Siswa PKL</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container">
+        <span class="navbar-brand">Data Siswa PKL</span>
+
+        <a href="index.html" class="btn btn-light btn-sm">
+            Kembali
+        </a>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <h3 class="mb-4">Data Siswa PKL</h3>
+
+    <button
+        class="btn btn-success mb-3"
+        data-bs-toggle="modal"
+        data-bs-target="#modalTambah">
+
+        + Tambah Siswa
+
+    </button>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped text-center">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>NIS</th>
+                    <th>Jurusan</th>
+                    <th>Tempat PKL</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tbody">
+
+                <tr>
+                    <td>1</td>
+                    <td>Raka Haryanta</td>
+                    <td>12345</td>
+                    <td>RPL</td>
+                    <td>PT Teknologi Maju</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Budi Santoso</td>
+                    <td>12346</td>
+                    <td>Teknik Mesin</td>
+                    <td>Bengkel Jaya</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Siti Aminah</td>
+                    <td>12347</td>
+                    <td>Teknik Elektro</td>
+                    <td>PLN</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="modalTambah">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Tambah Siswa
+                </h5>
+
+                <button
+                    class="btn-close"
+                    data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <input
+                    type="text"
+                    id="nama"
+                    class="form-control mb-3"
+                    placeholder="Nama Siswa">
+
+                <input
+                    type="text"
+                    id="nis"
+                    class="form-control mb-3"
+                    placeholder="NIS">
+
+                <input
+                    type="text"
+                    id="jurusan"
+                    class="form-control mb-3"
+                    placeholder="Jurusan">
+
+                <input
+                    type="text"
+                    id="tempat"
+                    class="form-control"
+                    placeholder="Tempat PKL">
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal">
+
+                    Tutup
+
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="tambahSiswa()">
+
+                    Simpan
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+function tambahSiswa(){
+
+    let nama = document.getElementById("nama").value;
+    let nis = document.getElementById("nis").value;
+    let jurusan = document.getElementById("jurusan").value;
+    let tempat = document.getElementById("tempat").value;
+
+    if(nama == "" || nis == "" || jurusan == "" || tempat == ""){
+
+        alert("Data harus diisi semua!");
+        return;
+
+    }
+
+    let tbody = document.getElementById("tbody");
+
+    let nomor = tbody.rows.length + 1;
+
+    tbody.innerHTML += `
+
+        <tr>
+
+            <td>${nomor}</td>
+            <td>${nama}</td>
+            <td>${nis}</td>
+            <td>${jurusan}</td>
+            <td>${tempat}</td>
+
+        </tr>
+
+    `;
+
+    alert("Siswa berhasil ditambahkan!");
+
+    document.getElementById("nama").value = "";
+    document.getElementById("nis").value = "";
+    document.getElementById("jurusan").value = "";
+    document.getElementById("tempat").value = "";
+
+}
+
+</script>
+
+</body>
+</html>

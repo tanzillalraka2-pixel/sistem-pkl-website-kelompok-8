@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Guru PKL</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="monitoring.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="#">
+            Sistem PKL
+        </a>
+        <a href="index.html" class="btn btn-light btn-sm">
+            Kembali
+        </a>
+
+    </div>
+</nav>
+
+<div class="container py-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold">
+                <i class="fa-solid fa-user-check text-primary"></i>
+                Monitoring Guru PKL
+            </h2>
+
+            <p class="text-muted">
+                Monitoring kegiatan dan kehadiran siswa PKL
+            </p>
+        </div>
+
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalTambah">
+            <i class="fa fa-plus"></i> Tambah Siswa
+        </button>
+
+    </div>
+
+    <div class="row g-4 mb-4">
+
+        <div class="col-md-4">
+            <div class="card shadow border-0">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-users fa-2x text-primary mb-3"></i>
+
+                    <h5>Total Siswa</h5>
+
+                    <h2 class="fw-bold text-primary" id="totalSiswa">
+                        0
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow border-0">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-circle-check fa-2x text-success mb-3"></i>
+
+                    <h5>Hadir Hari Ini</h5>
+
+                    <h2 class="fw-bold text-success" id="hadir">
+                        0
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow border-0">
+                <div class="card-body text-center">
+
+                    <i class="fa-solid fa-circle-xmark fa-2x text-danger mb-3"></i>
+
+                    <h5>Tidak Hadir</h5>
+
+                    <h2 class="fw-bold text-danger" id="tidakHadir">
+                        0
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="card shadow border-0">
+
+        <div class="card-body">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h4 class="fw-bold">
+                    Data Monitoring Siswa
+                </h4>
+
+                <input
+                    type="text"
+                    id="search"
+                    class="form-control w-25"
+                    placeholder="Cari siswa..."
+                >
+
+            </div>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-hover align-middle text-center">
+
+                    <thead class="table-primary">
+
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>Jurusan</th>
+                            <th>Tempat PKL</th>
+                            <th>Kegiatan</th>
+                            <th>Status</th>
+                            <th>Penilaian</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tbody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade" id="modalTambah">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Siswa</h5>
+
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+
+                <input type="text" id="nama" class="form-control mb-2" placeholder="Nama">
+
+                <input type="text" id="jurusan" class="form-control mb-2" placeholder="Jurusan">
+
+                <input type="text" id="tempat" class="form-control mb-2" placeholder="Tempat PKL">
+
+                <input type="text" id="kegiatan" class="form-control mb-2" placeholder="Kegiatan">
+
+                <select id="status" class="form-select">
+                    <option value="Hadir">Hadir</option>
+                    <option value="Tidak Hadir">Tidak Hadir</option>
+                </select>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button class="btn btn-secondary" data-bs-dismiss="modal">
+                    Tutup
+                </button>
+
+                <button class="btn btn-primary" onclick="tambahSiswa()">
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+let siswa = [
+
+    {
+        nama:"Raka Haryanta",
+        jurusan:"RPL",
+        tempat:"PT Teknologi Maju",
+        kegiatan:"Membuat website sistem PKL",
+        status:"Hadir",
+        nilai:90
+    },
+
+    {
+        nama:"Budi Santoso",
+        jurusan:"Teknik Mesin",
+        tempat:"Bengkel Jaya",
+        kegiatan:"Servis mesin kendaraan",
+        status:"Tidak Hadir",
+        nilai:75
+    },
+
+    {
+        nama:"Siti Aminah",
+        jurusan:"Teknik Elektro",
+        tempat:"PLN",
+        kegiatan:"Instalasi listrik dasar",
+        status:"Hadir",
+        nilai:88
+    }
+
+];
+
+function renderTable(){
+
+    let tbody = document.getElementById("tbody");
+
+    tbody.innerHTML = "";
+
+    siswa.forEach((item,index)=>{
+
+        tbody.innerHTML += `
+
+        <tr>
+
+            <td>${index+1}</td>
+
+            <td>${item.nama}</td>
+
+            <td>${item.jurusan}</td>
+
+            <td>${item.tempat}</td>
+
+            <td>${item.kegiatan}</td>
+
+            <td>
+                ${
+                    item.status == "Hadir"
+                    ?
+                    `<span class="badge bg-success">Hadir</span>`
+                    :
+                    `<span class="badge bg-danger">Tidak Hadir</span>`
+                }
+            </td>
+
+            <td>
+                ${item.nilai}
+            </td>
+
+            <td>
+
+                <button class="btn btn-warning btn-sm"
+                onclick="beriNilai(${index})">
+
+                    <i class="fa fa-star"></i>
+
+                </button>
+
+                <button class="btn btn-info btn-sm"
+                onclick="ubahStatus(${index})">
+
+                    <i class="fa fa-repeat"></i>
+
+                </button>
+
+                <button class="btn btn-danger btn-sm"
+                onclick="hapusSiswa(${index})">
+
+                    <i class="fa fa-trash"></i>
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+    });
+
+    updateStatistik();
+}
+
+function updateStatistik(){
+
+    document.getElementById("totalSiswa").innerText = siswa.length;
+
+    let hadir = siswa.filter(s => s.status == "Hadir").length;
+
+    let tidak = siswa.filter(s => s.status == "Tidak Hadir").length;
+
+    document.getElementById("hadir").innerText = hadir;
+
+    document.getElementById("tidakHadir").innerText = tidak;
+}
+
+function tambahSiswa(){
+
+    let nama = document.getElementById("nama").value;
+    let jurusan = document.getElementById("jurusan").value;
+    let tempat = document.getElementById("tempat").value;
+    let kegiatan = document.getElementById("kegiatan").value;
+    let status = document.getElementById("status").value;
+
+    if(nama == "" || jurusan == ""){
+
+        alert("Data belum lengkap!");
+        return;
+    }
+
+    siswa.push({
+
+        nama:nama,
+        jurusan:jurusan,
+        tempat:tempat,
+        kegiatan:kegiatan,
+        status:status,
+        nilai:0
+
+    });
+
+    renderTable();
+
+    alert("Siswa berhasil ditambahkan");
+
+    document.getElementById("nama").value = "";
+    document.getElementById("jurusan").value = "";
+    document.getElementById("tempat").value = "";
+    document.getElementById("kegiatan").value = "";
+}
+
+function beriNilai(index){
+
+    let nilai = prompt("Masukkan nilai siswa:");
+
+    if(nilai != null){
+
+        siswa[index].nilai = nilai;
+
+        renderTable();
+    }
+}
+
+function ubahStatus(index){
+
+    if(siswa[index].status == "Hadir"){
+
+        siswa[index].status = "Tidak Hadir";
+
+    }else{
+
+        siswa[index].status = "Hadir";
+    }
+
+    renderTable();
+}
+
+function hapusSiswa(index){
+
+    let konfirmasi = confirm("Yakin ingin menghapus data?");
+
+    if(konfirmasi){
+
+        siswa.splice(index,1);
+
+        renderTable();
+    }
+}
+
+document.getElementById("search").addEventListener("keyup", function(){
+
+    let keyword = this.value.toLowerCase();
+
+    let rows = document.querySelectorAll("#tbody tr");
+
+    rows.forEach(row => {
+
+        row.style.display =
+            row.innerText.toLowerCase().includes(keyword)
+            ? ""
+            : "none";
+    });
+
+});
+
+renderTable();
+
+</script>
+
+</body>
+</html>
