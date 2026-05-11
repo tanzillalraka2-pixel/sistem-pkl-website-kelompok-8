@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistem Informasi PKL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="indek.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg bg-light py-3">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-danger fs-3" href="#">PKL SMKN 5 SURAKARTA</a>
+        <img src="logo stemro.jpg" alt="Logo" width="70" height="70"> 
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link mx-2" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link mx-2" href="#">Tentang</a></li>
+                <li class="nav-item"><a class="nav-link mx-2" href="#">Jurnal</a></li>
+                <li class="nav-item"><a class="nav-link mx-2" href="#">Laporan</a></li>
+                <li class="nav-item"><a class="nav-link mx-2" href="#Kontak Kami">Kontak</a></li>
+                <li class="nav-item">
+    <button onclick="logout()" class="btn btn-danger ms-2">
+        Logout
+    </button>
+</li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <div class="col-md-6">
+                <h5 class="text-muted">Mencerdaskan Generasi Bangsa</h5>
+                <h1 class="fw-bold display-5">
+                    Dengan Ilmu,<br>
+                    Hidup Jadi Bermutu
+                </h1>
+                <h1 class="text-danger fs-3"> SMK BISA SMK HEBAT</h1>
+                <p class="text-muted mt-3">
+                    Website Sistem Informasi PKL untuk membantu siswa dalam mencatat kegiatan,
+                    laporan, dan monitoring oleh guru.
+                </p>
+
+                <a href="login.html" class="btn btn-success px-3 py-1 rounded-pill mt-3 mb-4">
+                    Login Sekarang
+                </a>
+            </div>
+
+            <div class="col-md-6 mb-4 ">
+                <img src="smkn5solodepan (1).jpg"
+                     class="img-fluid hero-img">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5 bg-light">
+    <div class="container text-center">
+
+        <h6 class="text-danger">Fitur Kami</h6>
+        <h2 class="fw-bold mb-4">Kemudahan Dalam Satu Platform</h2>
+
+        <div class="row">
+            
+            <div class="col-md-3">
+                <div class="card fitur-card p-4">
+                    <a href="jurnal-harian.html" class="text-decoration-none text-dark">
+                        <i class="fa-solid fa-book fa-2x text-primary mb-3"></i>
+                        <h5>Jurnal Harian</h5>
+                        <p>Catat kegiatan PKL setiap hari dengan mudah.</p>
+                   </a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card fitur-card p-4">
+                    <a href="upload-laporan.html"class="text-decoration-none text-dark">
+                        <i class="fa-solid fa-upload fa-2x text-success mb-3"></i>
+                        <h5>Upload Laporan</h5>
+                        <p>Kirim laporan PKL dengan cepat dan aman.</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card fitur-card p-4">
+                    <a href="monitoring.html" class="text-decoration-none text-dark">
+                        <i class="fa-solid fa-user-group fa-2x text-warning mb-3"></i>
+                        <h5>Monitoring Guru</h5>
+                        <p>Guru memantau perkembangan siswa.</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card fitur-card p-4">
+                    <a href="datasiswa.html" class="text-decoration-none text-dark">
+                        <i class="fa-solid fa-chart-bar fa-2x text-danger mb-3"></i>
+                        <h5>Data Siswa</h5>
+                        <p>Kelola data siswa secara terpusat.</p>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container text-center">
+        <h2>Kontak Kami</h2>
+        <p><h5> SMK NEGERI 5 SURAKARTA</h5></p>
+        <p>Email: info@smkn5.net</p>
+        <p>HP: 0271713916</p>
+        <p> JL.LU Adisucipto Nomor.42 Laweyan Surakarta </p>
+    </div>
+</section>
+
+<footer class="bg-dark text-white text-center py-3">
+    <p>© 2026 Sistem Informasi PKL</p>
+    <p> Kelompok 8 </p>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+
+    const login = localStorage.getItem("login");
+
+    if(login !== "true") {
+
+        const links = document.querySelectorAll(".fitur-card a");
+
+        links.forEach(link => {
+
+            link.addEventListener("click", function(e) {
+                e.preventDefault();
+
+                alert("Silakan login terlebih dahulu!");
+            });
+
+        });
+
+    }
+
+</script>
+<script>
+
+function logout() {
+
+    localStorage.removeItem("login");
+
+    window.location.href = "login.html";
+}
+
+</script>
+<script src="login.js"></script>
+</body>
+</html>
